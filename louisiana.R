@@ -1,5 +1,6 @@
 # Load data
 library(UScensus2010blkgrp)
+
 library(UScensus2010)
 data(louisiana.blkgrp10)
 louisiana<-louisiana.blkgrp10
@@ -52,8 +53,30 @@ col.vector.black<-function(black){
 }
 plot(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector.black(black))
 
-histogram(native)
-histogram(hispanic)
+# Native
+summary(native)
+col.vector.native<-function(native){
+  col.vec<-vector(length=length(native))
+  col.vec[which(native<1)]<-"gold"
+  col.vec[which(native<4 & native>=1)]<-"darkgoldenrod2"
+  col.vec[which(native<8 & native>=4)]<-"darkorange"
+  col.vec[which(native>=8)]<-"firebrick2"
+  return (col.vec)
+}
+plot(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector.native(native))
+
+# Hispanic
+summary(hispanic)
+col.vector.hispanic<-function(hispanic){
+  col.vec<-vector(length=length(hispanic))
+  col.vec[which(hispanic<810)]<-"gold"
+  col.vec[which(hispanic<1160 & hispanic>=810)]<-"darkgoldenrod2"
+  col.vec[which(hispanic<1660 & hispanic>=1160)]<-"darkorange"
+  col.vec[which(hispanic>=1660)]<-"firebrick2"
+  return (col.vec)
+}
+plot(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector.hispanic(hispanic))
+
 
 # Population Shares
 plot(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=white.col)
