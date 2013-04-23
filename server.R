@@ -4,15 +4,14 @@ library(UScensus2010blkgrp)
 library(UScensus2010)
 
 # load data
-data(louisiana.blkgrp10)
-louisiana.10 <- louisiana.blkgrp10
+load('louisiana-census2010-plus-acs.RData')
 
 # some global constants
 LONGITUDE <- c(-90.29, -89.84)
 LATITUDE  <- c(29.81, 30.10)
 
 shinyServer(function(input, output) {
-  output$choropleth <- renderPlot({
-    choropleth(louisiana.10, xlim=LONGITUDE, ylim=LATITUDE)
+  output$hist <- renderPlot({
+    hist(louisiana.blkgrp10$income.male, breaks=as.numeric(input$n_breaks))
   })
 })
