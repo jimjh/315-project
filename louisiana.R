@@ -1,11 +1,59 @@
+# Question 1
 # Load data
 library(UScensus2010blkgrp)
-
 library(UScensus2010)
 data(louisiana.blkgrp10)
-louisiana<-louisiana.blkgrp10
+data(louisiana.blkgrp)
 
-plot(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10))
+# Question 2
+louisiana<-louisiana.blkgrp10
+louisiana2000<-louisiana.blkgrp
+dim(louisiana)
+dim(louisiana2000)
+dim(louisiana2000)[1]-dim(louisiana)[1]
+dim(louisiana@data)[1]-dim(louisiana2000@data)[1]
+
+The 2000 data has 40 more rows.
+
+length(unique(louisiana$tract))
+length(unique(louisiana2000$tract))
+There are 35 more tracts in the 2010 data than in the 2000 data.
+
+length(unique(louisiana$blkgrp))
+length(unique(louisiana2000$blkgrp))
+There is 1 more tract in the 2010 data than in the 2000 data.
+
+
+# Question 3
+names(louisiana)
+names(louisiana2000)
+
+pop2000<-louisiana2000$pop2000
+pop2010<-louisiana$P0010001
+white2000<-louisiana2000$white
+white2010<-louisiana$P0050003
+owneroccupied2000<-louisiana$hh.owner
+owneroccupied2010<-louisiana2010$H0120002
+
+
+# Question 4
+summary(pop2000)
+summary(pop2010)
+
+col.vector<-function(variable){
+  summary.vec<-summary(variable)
+  col.vec<-vector(length=length(variable))
+  first<-summary.vec[[1]]
+  second<-summary.vec[[2]]
+  third<-summary.vec[[4]]
+  col.vec[which(variable<first)]<-"gold"
+  col.vec[which(variable<second & variable>=first)]<-"darkgoldenrod2"
+  col.vec[which(variable<third & variable>=second)]<-"darkorange"
+  col.vec[which(variable>=third)]<-"firebrick2"
+  return (col.vec)
+}
+
+choropleth(louisiana2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(pop2000))
 
 # Chloropleth of population
 choropleth(louisiana, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10))
