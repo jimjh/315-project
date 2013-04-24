@@ -11,7 +11,5 @@ LONGITUDE <- c(-90.29, -89.84)
 LATITUDE  <- c(29.81, 30.10)
 
 shinyServer(function(input, output) {
-  output$hist <- renderPlot({
-    hist(louisiana.blkgrp10$income.male, breaks=as.numeric(input$n_breaks))
-  })
+  source('partials/histogram.R', local=T)
 })
