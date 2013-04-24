@@ -1,7 +1,6 @@
 # Question 1
 # Load data
 library(UScensus2010blkgrp)
-library(UScensus2000blkgrp)
 library(UScensus2010)
 data(louisiana.blkgrp10)
 data(louisiana.blkgrp)
