@@ -14,6 +14,20 @@ shinyUI(bootstrapPage(
                            choices = c(10, 20, 35, 50),
                            selected = 20),
                plotOutput('hist')
+      ),
+      tabPanel('Age vs Race',
+               selectInput('age.gender', 'Gender: ',
+                           list('Male' = 'male', 'Female' = 'female')),
+               selectInput('age.race', 'Race: ',
+                           list('White' = 'white', 'Black' = 'black',
+                                'American Indian/Native' = 'american.indian',
+                                'Asian' = 'asian')),
+               h2('Bandwidth'),
+               sliderInput("age.adjust.x", label="Age",
+                           min=2, max=10, value=7.5, step=0.5),
+               sliderInput("age.adjust.y", label="Pop. Percentage",
+                           min=0.0, max=5, value=0.25, step=0.25),
+               plotOutput('age.race')
       )
     )
   )

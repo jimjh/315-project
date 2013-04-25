@@ -2,6 +2,7 @@
 library(shiny)
 library(UScensus2010blkgrp)
 library(UScensus2010)
+library(MASS)
 
 # load data
 load('louisiana-census2010-plus-acs.RData')
@@ -12,4 +13,5 @@ LATITUDE  <- c(29.81, 30.10)
 
 shinyServer(function(input, output) {
   source('partials/histogram.R', local=T)
+  source('partials/age-race.R', local=T)
 })
