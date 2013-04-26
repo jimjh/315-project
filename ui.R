@@ -26,7 +26,7 @@ shinyUI(bootstrapPage(
                sliderInput("age.adjust.x", label="Age",
                            min=2, max=10, value=7.5, step=0.5),
                sliderInput("age.adjust.y", label="Pop. Percentage",
-                           min=0.0, max=2, value=0.25, step=0.05),
+                           min=0.05, max=2, value=0.25, step=0.05),
                plotOutput('age.race')
       ),
       tabPanel('Income vs Race',
@@ -40,7 +40,7 @@ shinyUI(bootstrapPage(
                sliderInput("income.adjust.x", label="Income",
                            min=1000, max=30000, value=12000, step=1000),
                sliderInput("income.adjust.y", label="Pop. Percentage",
-                           min=0.0, max=2, value=0.25, step=0.05),
+                           min=0.05, max=2, value=0.25, step=0.05),
                plotOutput('income.race')
       )
     )
