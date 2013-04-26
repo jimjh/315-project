@@ -14,7 +14,27 @@ shinyUI(bootstrapPage(
                            choices = c(10, 20, 35, 50),
                            selected = 20),
                plotOutput('hist')
+      ),
+      
+      # Tab Panel Containing Age vs. Population sGraphs
+      tabPanel('Age vs. Population',
+               
+               tabsetPanel(
+                 tabPanel('Age of Males',
+                plotOutput('agepop7')  
+                 ),
+                 tabPanel('Age of Females',
+                
+                 )
+                 
+                 
+               )
+               
+               
+      
       )
+      
+      
     )
   )
   

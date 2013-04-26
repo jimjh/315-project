@@ -12,4 +12,5 @@ LATITUDE  <- c(29.81, 30.10)
 
 shinyServer(function(input, output) {
   source('partials/histogram.R', local=T)
+  source('partials/age_pop.R', local=T)
 })
