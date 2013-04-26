@@ -2,7 +2,6 @@
 library(shiny)
 library(UScensus2010blkgrp)
 library(UScensus2010)
-<<<<<<< HEAD
 library(UScensus2000blkgrp)
 data(louisiana.blkgrp)
 library(MASS)
