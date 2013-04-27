@@ -10,7 +10,7 @@ particularly by race?
 
 How do characteristics like age and income correlate to population distribution and race in 2010?
 
-5.  Age-Pop: Chloropleth with pop density and income as contour
+5.  Age-Pop: Chloropleth with pop density and age as contour
 6.  Income-Pop: Chloropleth with pop density and income as contour
 7.  Age-Race: Violin-plots/boxplot/overlapping histogram
 8.  Income-Race: Violin-plots/boxplot/overlapping histogram
