@@ -22,6 +22,13 @@ shinyUI(bootstrapPage(
                            selected = "White"),
                plotOutput('race.percent.change')
       ),
+      tabPanel('Race by Year (Proportion)',
+               selectInput(inputId = "race.prop",
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
+               plotOutput('race.proportion')
+      ),
       tabPanel('Age vs Race',
                selectInput('age.gender', 'Gender: ',
                            list('Male' = 'male', 'Female' = 'female')),
