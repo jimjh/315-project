@@ -107,5 +107,3 @@ output$scatteragepop_female <- renderPlot({
     lines(lowess(age.female_pop, pop7, f=input$age.adjust.f_female), col=4, lwd=3)
   }
 })
-
-

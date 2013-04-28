@@ -8,12 +8,26 @@ shinyUI(bootstrapPage(
   mainPanel(
     # multiple tabs
     tabsetPanel(
-      tabPanel('Plot',
-               selectInput(inputId = "n_breaks",
-                           label = "Number of bins in histogram (approximate):",
-                           choices = c(10, 20, 35, 50),
-                           selected = 20),
-               plotOutput('hist')
+      tabPanel('Race by Year',
+               selectInput(inputId = "race.year",
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
+               plotOutput('plot2')
+      ),
+      tabPanel('Race by Year (Percentage Change)',
+               selectInput(inputId = "race.percent",
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
+               plotOutput('race.percent.change')
+      ),
+      tabPanel('Race by Year (Proportion)',
+               selectInput(inputId = "race.prop",
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
+               plotOutput('race.proportion')
       ),
       tabPanel('Age vs Race',
                selectInput('age.gender', 'Gender: ',
@@ -87,5 +101,4 @@ shinyUI(bootstrapPage(
       )
     )
   )
-  
 ))
