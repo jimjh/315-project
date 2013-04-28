@@ -1,14 +1,14 @@
 age.male_pop <- louisiana.blkgrp10$age.male
 
-no_nas <- age.male[!is.na(age.male)]
+no_nas <- age.male_pop[!is.na(age.male_pop)]
 mean(no_nas)
 
-age.male[is.na(age.male)] <- mean(no_nas)
+age.male_pop[is.na(age.male_pop)] <- mean(no_nas)
 
 output$scatteragepop <- renderPlot({
   plot(age.male_pop, pop7, col=2, xlim=c(0,80))
   
-  s <- summary(age.male)
+  s <- summary(age.male_pop)
   fq <- s[2]
   mean <- s[4]
   tq <- s[5]
@@ -43,26 +43,26 @@ output$scatteragepop <- renderPlot({
   }
   
   if (input$cont == TRUE) {
-    dens <- kde2d(age.male, pop7)
+    dens <- kde2d(age.male_pop, pop7)
     contour(dens, col="yellow", add=TRUE, lwd = 2)
   }
   
   if (input$showLine == TRUE) {
-    lines(lowess(age.male, pop7, f=input$age.adjust.f), col=4, lwd=3)
+    lines(lowess(age.male_pop, pop7, f=input$age.adjust.f), col=4, lwd=3)
   }
 })
 
 age.female_pop <- louisiana.blkgrp10$age.female
 
-no_nas_female <- age.female[!is.na(age.female)]
+no_nas_female <- age.female_pop[!is.na(age.female_pop)]
 mean(no_nas_female)
 
-age.female[is.na(age.female)] <- mean(no_nas_female)
+age.female_pop[is.na(age.female_pop)] <- mean(no_nas_female)
 
 output$scatteragepop_female <- renderPlot({
   plot(age.female_pop, pop7, col=2, xlim=c(0,80))
   
-  fes <- summary(age.female)
+  fes <- summary(age.female_pop)
   fefq <- fes[2]
   femean <- fes[4]
   fetq <- fes[5]
@@ -102,7 +102,7 @@ output$scatteragepop_female <- renderPlot({
   }
   
   if (input$feshowLine == TRUE) {
-    lines(lowess(age.female, pop7, f=input$age.adjust.f_female), col=4, lwd=3)
+    lines(lowess(age.female_pop, pop7, f=input$age.adjust.f_female), col=4, lwd=3)
   }
 })
 
