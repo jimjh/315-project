@@ -1,4 +1,4 @@
-output$map2 <- renderPlot({
+output$plot2 <- renderPlot({
   col.vector<-function(variable){
     summary.vec<-summary(variable)
     col.vec<-vector(length=length(variable))
@@ -11,11 +11,15 @@ output$map2 <- renderPlot({
     col.vec[which(variable>=third)]<-"gray43"
     return (col.vec)
   }
-  lousiana.data<-list(year2000=louisiana.blkgrp, year2010=louisiana.blkgrp10)
+  louisiana.data<-list(year2000=louisiana.blkgrp, year2010=louisiana.blkgrp10)
   if (input$year==2000){
-    louisiana.year<-lousiana.data$year2000
+    louisiana.year<-louisiana.data$year2000
+    louisiana.pop<-louisiana.year$pop2000/areaPoly(louisiana.year)
   } else {
-    louisiana.year<-lousiana.data$year2010
+    louisiana.year<-louisiana.data$year2010
+    louisiana.pop<-louisiana.year$P0010001/areaPoly(louisiana.year)
   }
-  choropleth(louisiana.year, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(louisiana.year$pop2000))
+  par(mfrow=c(1,2))
+  plot(louisiana.year, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(louisiana.pop))
+  plot(louisiana.year, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(louisiana.pop))
 })

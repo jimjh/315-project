@@ -5,7 +5,6 @@ shinyUI(bootstrapPage(
   
   headerPanel("US Census 2010"),
   
-
   mainPanel(
     # multiple tabs
     tabsetPanel(
@@ -43,6 +42,48 @@ shinyUI(bootstrapPage(
                sliderInput("income.adjust.y", label="Pop. Percentage",
                            min=0.05, max=2, value=0.25, step=0.05),
                plotOutput('income.race')
+      ),
+      # Tab Panel Containing Age vs. Population Graphs
+      tabPanel('Age vs. Population',
+               tabsetPanel(
+                 tabPanel('Male',
+                   h4("Select Age Options"),
+                   checkboxInput("age1", "Age 1st Quartile"),
+                   checkboxInput("agem", "Age Mean"),
+                   checkboxInput("age3", "Age 1rd Quartile"),
+                   h4("Select Population Options"),
+                   checkboxInput("pop1", "Population 1st Quartile"),
+                   checkboxInput("popm", "Population Mean" ),
+                   checkboxInput("pop3", "Population 3rd Quartile"),
+                   br(),
+                   checkboxInput("cont", "Show Contour"),
+                   checkboxInput("showLine", "Show Lowess"),
+                   sliderInput("age.adjust.f", label="Adjust Lowess Smoother Span",
+                               min=0, max=.5, value=.3, step=.1),
+                   tabPanel('Male Age vs. Population',
+                            plotOutput('scatteragepop')  
+                            )        
+                 ),
+                 tabPanel('Female',
+                    h4("Select Age Options"),
+                    checkboxInput("feage1", "Age 1st Quartile"),
+                    checkboxInput("feagem", "Age Mean"),
+                    checkboxInput("feage3", "Age 1rd Quartile"),
+                    br(),
+                    h4("Select Population Options"),
+                    checkboxInput("fepop1", "Population 1st Quartile"),
+                    checkboxInput("fepopm", "Population Mean" ),
+                    checkboxInput("fepop3", "Population 3rd Quartile"),
+                    br(),
+                    checkboxInput("fecont", "Show Contour"),
+                    checkboxInput("feshowLine", "Show Lowess"),
+                    sliderInput("age.adjust.f_female", label="Adjust Lowess Smoother Span",
+                                min=0, max=.5, value=.3, step=.1),
+                    tabPanel('Female Age vs. Population',
+                             plotOutput('scatteragepop_female')  
+                    )       
+                 )
+               )
       )
     )
   )
