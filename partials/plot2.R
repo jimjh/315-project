@@ -17,28 +17,28 @@ output$plot2 <- renderPlot({
   louisiana.2010<-louisiana.blkgrp10
   louisiana.pop.2010<-louisiana.2010$P0010001/areaPoly(louisiana.2010)
   
-  if (input$race=="White"){
+  if (input$race.year=="White"){
     race.2000<-louisiana.2000$nh.white
     race.2010<-louisiana.2010$P0050003
   } 
-  if (input$race=="Black"){
+  if (input$race.year=="Black"){
     race.2000<-louisiana.2000$nh.black
     race.2010<-louisiana.2010$P0050004
   }
-  if (input$race=="American Indian/Native"){
+  if (input$race.year=="American Indian/Native"){
     race.2000<-louisiana.2000$nh.ameri.es
     race.2010<-louisiana.2010$P0050005
   }
-  if (input$race=="Asian"){
+  if (input$race.year=="Asian"){
     race.2000<-louisiana.2000$nh.asian
     race.2010<-louisiana.2010$P0050006
   }
-  if (input$race=="Hispanic"){
+  if (input$race.year=="Hispanic"){
     race.2000<-louisiana.2000$hispanic.t
     race.2010<-louisiana.2010$P0040003
   }
   par(mfrow=c(2,1),mar=c(0, 4, 4, 2) + 0.1)
-  race.name<-paste(input$race,"s",sep="")
+  race.name<-paste(input$race.year,"s",sep="")
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep="")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep="")
   plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
