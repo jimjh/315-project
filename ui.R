@@ -8,11 +8,11 @@ shinyUI(bootstrapPage(
   mainPanel(
     # multiple tabs
     tabsetPanel(
-      tabPanel('Plot2',
-               selectInput(inputId = "year",
-                           label = "Year:",
-                           choices = c(2000, 2010),
-                           selected = 2000),
+      tabPanel('Race by Year (Contour)',
+               selectInput(inputId = "race",
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
                plotOutput('plot2')
       ),
       tabPanel('Age vs Race',

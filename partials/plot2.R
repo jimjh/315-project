@@ -5,21 +5,46 @@ output$plot2 <- renderPlot({
     first<-summary.vec[[1]]
     second<-summary.vec[[2]]
     third<-summary.vec[[4]]
-    col.vec[which(variable<first)]<-"gray90"
-    col.vec[which(variable<second & variable>=first)]<-"gray83"
-    col.vec[which(variable<third & variable>=second)]<-"gray63"
-    col.vec[which(variable>=third)]<-"gray43"
+    col.vec[which(variable<first)]<-"gold"
+    col.vec[which(variable<second & variable>=first)]<-"darkgoldenrod2"
+    col.vec[which(variable<third & variable>=second)]<-"darkorange"
+    col.vec[which(variable>=third)]<-"firebrick2"
     return (col.vec)
   }
-  louisiana.data<-list(year2000=louisiana.blkgrp, year2010=louisiana.blkgrp10)
-  if (input$year==2000){
-    louisiana.year<-louisiana.data$year2000
-    louisiana.pop<-louisiana.year$pop2000/areaPoly(louisiana.year)
-  } else {
-    louisiana.year<-louisiana.data$year2010
-    louisiana.pop<-louisiana.year$P0010001/areaPoly(louisiana.year)
+  
+  louisiana.2000<-louisiana.blkgrp
+  louisiana.pop.2000<-louisiana.2000$pop2000/areaPoly(louisiana.2000)
+  louisiana.2010<-louisiana.blkgrp10
+  louisiana.pop.2010<-louisiana.2010$P0010001/areaPoly(louisiana.2010)
+  
+  if (input$race=="White"){
+    race.2000<-louisiana.2000$nh.white
+    race.2010<-louisiana.2010$P0050003
+  } 
+  if (input$race=="Black"){
+    race.2000<-louisiana.2000$nh.black
+    race.2010<-louisiana.2010$P0050004
   }
-  par(mfrow=c(1,2))
-  plot(louisiana.year, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(louisiana.pop))
-  plot(louisiana.year, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),col=col.vector(louisiana.pop))
+  if (input$race=="American Indian/Native"){
+    race.2000<-louisiana.2000$nh.ameri.es
+    race.2010<-louisiana.2010$P0050005
+  }
+  if (input$race=="Asian"){
+    race.2000<-louisiana.2000$nh.asian
+    race.2010<-louisiana.2010$P0050006
+  }
+  if (input$race=="Hispanic"){
+    race.2000<-louisiana.2000$hispanic.t
+    race.2010<-louisiana.2010$P0040003
+  }
+  par(mfrow=c(2,1),mar=c(0, 4, 4, 2) + 0.1)
+  race.name<-paste(input$race,"s",sep="")
+  title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep="")
+  title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep="")
+  plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+       col=col.vector(race.2000),
+       main=title.2000)
+  plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+       col=col.vector(race.2010),
+       main=title.2010)
 })
