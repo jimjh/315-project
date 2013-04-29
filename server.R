@@ -1,12 +1,14 @@
 # install.packages('shiny')
+# install.packages('SDMTools')
 library(shiny)
 library(UScensus2010blkgrp)
 library(UScensus2010)
 library(UScensus2000blkgrp)
-data(louisiana.blkgrp)
 library(MASS)
+library(SDMTools)
 
 # load data
+data(louisiana.blkgrp)
 load('louisiana-census2010-plus-acs.RData')
 
 # some global constants
