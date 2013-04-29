@@ -1,11 +1,6 @@
 #Proportional stacked barplot for 36-315 Spring project
 #Luke Davis
 
-library(UScensus2010blkgrp)
-library(UScensus2000blkgrp)
-data(louisiana.blkgrp10)
-data(louisiana.blkgrp)
-
 #2000 statewide racial proportions
 whProp00 <- sum(louisiana.blkgrp$nh.white)/sum(louisiana.blkgrp$pop2000) #white
 hiProp00 <- sum(louisiana.blkgrp$hispanic.t)/sum(louisiana.blkgrp$pop2000) #hispanic

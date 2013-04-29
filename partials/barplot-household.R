@@ -1,9 +1,6 @@
 #Barplots of Louisiana Household Size for 36-315 Spring project
 #Luke Davis
 
-library(UScensus2000blkgrp)
-data(louisiana.blkgrp)
-
 #Household size by race
 #2000
 hh.ylimit=c(0,0.35)
