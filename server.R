@@ -15,16 +15,15 @@ load('louisiana-census2010-plus-acs.RData')
 LONGITUDE <- c(-90.29, -89.84)
 LATITUDE  <- c(29.81, 30.10)
 
+
 shinyServer(function(input, output) {
   source('partials/plot2.R', local=T)
   source('partials/race-percent-change.R', local=T)
   source('partials/race-proportion.R', local=T)
   source('partials/age-race.R', local=T)
   source('partials/income-race.R', local=T)
-  source('partials/age_pop.R', local=T)
-  source('partials/income_pop.R', local=T)
-  source('partials/pop.R', local=T)
-  source('partials/agepopscatter.R', local=T)
+  source('partials/age_map_pop_contour.R', local=T)
+  source('partials/income_map_pop_contour.R', local=T)
   source('partials/barplot-household.R', local=T)
   source('partials/barplot-raceprop.R', local=T)
 

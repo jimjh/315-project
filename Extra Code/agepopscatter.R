@@ -1,4 +1,4 @@
-pop7 <- louisiana.blkgrp10$P0010001
+pop7 <- louisiana.blkgrp10$P0010001/areaPoly(louisiana.blkgrp10)
 
 age.male_pop <- louisiana.blkgrp10$age.male
 
