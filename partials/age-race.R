@@ -31,6 +31,8 @@ output$age.race <- renderPlot({
   image(age.density, col=rev(heat.colors(12)),
         xlab=sprintf('Median Age for %ss (Years)', capwords(input$age.gender)),
         ylab=sprintf('Pop. Percentage of %ss (%%)', capwords(input$age.race)))
+  title(sprintf('Distribution of Age and Racial Proportion',
+                capwords(input$age.race), capwords(input$age.gender)))
   points(x=age, y=pct.race, pch=4, col=rgb(.2, .2 , .2, .3))
   contour(age.density, add=T)
   
