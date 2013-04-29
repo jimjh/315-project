@@ -23,4 +23,7 @@ shinyServer(function(input, output) {
   source('partials/income_pop.R', local=T)
   source('partials/pop.R', local=T)
   source('partials/agepopscatter.R', local=T)
+  source('partials/barplot-household.R', local=T)
+  source('partials/barplot-raceprop.R', local=T)
+
 })

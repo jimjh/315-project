@@ -98,7 +98,19 @@ shinyUI(bootstrapPage(
                     )       
                  )
                )
-      )
+      ),
+        # Tab panel for barplots of household size by race
+        tabPanel('Household vs Race',
+                  selectInput('hh.race', 'Race: ',
+                           list('White' = 'White', 'Black' = 'Black',
+                                'Hispanic' = 'Hispanic','Asian' = 'Asian')),
+                  plotOutput('hh.race.plot')
+                ),
+        # Tab panel for race proportion barplots
+        tabPanel('Race Proportions',
+                  checkboxInput('prop.include', 'Include White and Black', value=TRUE),
+                  plotOutput('prop.race.plot')
+                )
     )
   )
 ))
