@@ -1,9 +1,6 @@
 #Barplots of Louisiana Household Size for 36-315 Spring project
 #Luke Davis
 
-library(UScensus2000blkgrp)
-data(louisiana.blkgrp)
-
 #Household size by race
 #2000
 hh.ylimit=c(0,0.35)
@@ -69,5 +66,5 @@ output$hh.race.plot <- renderPlot({
                       Prop6p,Prop7p)), col=hh.col, beside=TRUE,
           ylab=paste("Proportion of", input$hh.race, "Households"), xlab="Household Size", 
           main=paste("2000 Household Size:", input$hh.race, "Householder"), ylim=hh.ylimit)
-  axis(side=1, at=seq(from=1.5, by=1, to=7.5), labels=1:7)
+  axis(side=1, at=seq(from=1.5, by=1, to=7.5), labels=1:7, tick=FALSE)
 })
