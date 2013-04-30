@@ -45,8 +45,12 @@ output$race.percent.change <- renderPlot({
     }
   }
   race.name<-paste(input$race.percent,"s",sep="")
-  title<-paste("Map of Louisiana Showing Percentage Change in Population Distribution of",race.name,sep="")
+  title<-paste("Map of Louisiana Showing Percentage Change in Population Distribution of",race.name,sep=" ")
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(percent.change),
-       main=title)
+       col=col.vector(percent.change))
+  title(title)
+  legend("bottomright",
+         legend=c("<0%","0%-15%","15%-30%","30%-60%","60%-100%",">100%"),
+         text.col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),
+         col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),lwd=2)
 })

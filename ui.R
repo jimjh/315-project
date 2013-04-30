@@ -6,6 +6,7 @@ shinyUI(bootstrapPage(
   headerPanel("US Census 2010"),
   
   mainPanel(
+    div(class="span12",
     # multiple tabs
     tabsetPanel(
       tabPanel('Race by Year',
@@ -28,6 +29,19 @@ shinyUI(bootstrapPage(
                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
                            selected = "White"),
                plotOutput('race.proportion')
+      ),
+      tabPanel('Race by Year (Latitude, Longitude)',
+               selectInput(inputId = "race.lat",
+                            label = "Race:",
+                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                            selected = "White"),
+               radioButtons("lat.lon", "Latitude/Longitude:",
+                            c("Latitude" = "lat",
+                              "Longitude" = "long")),
+               h4('Bandwidth'),
+               sliderInput("violin.adjust", label="Bandwidth",
+                           min=1, max=10, value=3, step=0.25),
+               plotOutput('race.lat')
       ),
       tabPanel('Age vs Race',
                selectInput('age.gender', 'Gender: ',
@@ -99,6 +113,7 @@ shinyUI(bootstrapPage(
                  )
                )
       )
+    )
     )
   )
 ))

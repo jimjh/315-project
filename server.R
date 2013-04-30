@@ -17,6 +17,7 @@ shinyServer(function(input, output) {
   source('partials/plot2.R', local=T)
   source('partials/race-percent-change.R', local=T)
   source('partials/race-proportion.R', local=T)
+  source('partials/pop-violin-lat.R', local=T)
   source('partials/age-race.R', local=T)
   source('partials/income-race.R', local=T)
   source('partials/age_pop.R', local=T)
