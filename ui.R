@@ -74,8 +74,7 @@ shinyUI(bootstrapPage(
       # Tab Panel Containing Age vs. Population Graphs
       tabPanel('Age vs. Population',
                tabPanel('Age vs. Population',
-                        selectInput('age_gender_select', 'Gender: ',
-                                    list('Male' = 'male', 'Female' = 'female')),
+                        br(),
                         checkboxInput('age_contour', 'Show Population Contour'),
                         br(),
                         plotOutput('age_vs_pop')
@@ -84,13 +83,10 @@ shinyUI(bootstrapPage(
       # Tab Panel Containing Income vs. Population Graphs
       tabPanel('Income vs. Population',
                tabPanel('Income vs. Population',
-                        selectInput('income_gender_select', 'Gender: ',
-                                    list('Male' = 'male', 'Female' = 'female')),
                         br(),
                         checkboxInput('income_contour', 'Show Population Contour'),
                         br(),
-                        plotOutput('income_vs_pop'),
-                        plotOutput('age_contour_plot')
+                        plotOutput('income_vs_pop')
                )
       ),
         # Tab panel for barplots of household size by race
