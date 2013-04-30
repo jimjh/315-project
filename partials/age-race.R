@@ -28,10 +28,22 @@ output$age.race <- renderPlot({
   pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(louisiana.blkgrp10$P0030001, na.rm=T)
   age.density <- kde2d(x=age, y=pct.race, h=c(input$age.adjust.x, input$age.adjust.y), n=50)
   
+  prev.par <- par(mar=(c(5, 4, 4, 5) + 0.1), xpd=T)
   image(age.density, col=rev(heat.colors(12)),
         xlab=sprintf('Median Age for %ss (Years)', capwords(input$age.gender)),
         ylab=sprintf('Pop. Percentage of %ss (%%)', capwords(input$age.race)))
+  title(sprintf('Distribution of Age and Racial Proportion',
+                capwords(input$age.race), capwords(input$age.gender)))
   points(x=age, y=pct.race, pch=4, col=rgb(.2, .2 , .2, .3))
   contour(age.density, add=T)
+  par(prev.par)
+  
+  # legend
+  dx <- floor(0.05 * diff(range(age)))
+  xl <- max(age) + dx/2; xr <- xl + dx
+  dy <- 0.6 * diff(range(pct.race))
+  yb <- max(pct.race) - dy; yt <- yb + dy
+  coords <- cbind(x=c(xl, xr, xr, xl), y=c(yb, yb, yt, yt))
+  legend.gradient(coords, rev(heat.colors(12)), c('Low', 'High'), xpd=T, title='')
   
 })

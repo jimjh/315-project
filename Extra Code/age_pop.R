@@ -1,19 +1,4 @@
 
-col.vector<-function(variable){
-  summary.vec<-summary(variable)
-  col.vec<-vector(length=length(variable))
-  first<-summary.vec[[1]]
-  second<-summary.vec[[2]]
-  third<-summary.vec[[4]]
-  col.vec[which(variable<first)]<-"gold"
-  col.vec[which(variable<second & variable>=first)]<-"darkgoldenrod2"
-  col.vec[which(variable<third & variable>=second)]<-"darkorange"
-  col.vec[which(variable>=third)]<-"firebrick2"
-  col.vec[which(variable == 0)] <- "white"
-  col.vec[which(is.na(variable))] <- "white"
-  return (col.vec)
-}
-
 
 #popdens <- density(pop7)
 #xcoord <- # x coordinate

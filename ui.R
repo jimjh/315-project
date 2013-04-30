@@ -5,8 +5,7 @@ shinyUI(bootstrapPage(
   
   headerPanel("US Census 2010"),
   
-  mainPanel(
-    div(class="span12",
+  mainPanel(div(class='span12',
     # multiple tabs
     tabsetPanel(
       tabPanel('Race by Year',
@@ -32,9 +31,9 @@ shinyUI(bootstrapPage(
       ),
       tabPanel('Race by Year (Latitude, Longitude)',
                selectInput(inputId = "race.lat",
-                            label = "Race:",
-                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
-                            selected = "White"),
+                           label = "Race:",
+                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
+                           selected = "White"),
                radioButtons("lat.lon", "Latitude/Longitude:",
                             c("Latitude" = "lat",
                               "Longitude" = "long")),
@@ -73,47 +72,39 @@ shinyUI(bootstrapPage(
       ),
       # Tab Panel Containing Age vs. Population Graphs
       tabPanel('Age vs. Population',
-               tabsetPanel(
-                 tabPanel('Male',
-                   h4("Select Age Options"),
-                   checkboxInput("age1", "Age 1st Quartile"),
-                   checkboxInput("agem", "Age Mean"),
-                   checkboxInput("age3", "Age 1rd Quartile"),
-                   h4("Select Population Options"),
-                   checkboxInput("pop1", "Population 1st Quartile"),
-                   checkboxInput("popm", "Population Mean" ),
-                   checkboxInput("pop3", "Population 3rd Quartile"),
-                   br(),
-                   checkboxInput("cont", "Show Contour"),
-                   checkboxInput("showLine", "Show Lowess"),
-                   sliderInput("age.adjust.f", label="Adjust Lowess Smoother Span",
-                               min=0, max=.5, value=.3, step=.1),
-                   tabPanel('Male Age vs. Population',
-                            plotOutput('scatteragepop')  
-                            )        
-                 ),
-                 tabPanel('Female',
-                    h4("Select Age Options"),
-                    checkboxInput("feage1", "Age 1st Quartile"),
-                    checkboxInput("feagem", "Age Mean"),
-                    checkboxInput("feage3", "Age 1rd Quartile"),
-                    br(),
-                    h4("Select Population Options"),
-                    checkboxInput("fepop1", "Population 1st Quartile"),
-                    checkboxInput("fepopm", "Population Mean" ),
-                    checkboxInput("fepop3", "Population 3rd Quartile"),
-                    br(),
-                    checkboxInput("fecont", "Show Contour"),
-                    checkboxInput("feshowLine", "Show Lowess"),
-                    sliderInput("age.adjust.f_female", label="Adjust Lowess Smoother Span",
-                                min=0, max=.5, value=.3, step=.1),
-                    tabPanel('Female Age vs. Population',
-                             plotOutput('scatteragepop_female')  
-                    )       
-                 )
+               tabPanel('Age vs. Population',
+                        selectInput('age_gender_select', 'Gender: ',
+                                    list('Male' = 'male', 'Female' = 'female')),
+                        checkboxInput('age_contour', 'Show Population Contour'),
+                        br(),
+                        plotOutput('age_vs_pop')
+                        )
+      ),
+      # Tab Panel Containing Income vs. Population Graphs
+      tabPanel('Income vs. Population',
+               tabPanel('Income vs. Population',
+                        selectInput('income_gender_select', 'Gender: ',
+                                    list('Male' = 'male', 'Female' = 'female')),
+                        br(),
+                        checkboxInput('income_contour', 'Show Population Contour'),
+                        br(),
+                        plotOutput('income_vs_pop'),
+                        plotOutput('age_contour_plot')
                )
-      )
+      ),
+        # Tab panel for barplots of household size by race
+        tabPanel('Household vs Race',
+                  selectInput('hh.race', 'Race: ',
+                           list('White' = 'White', 'Black' = 'Black',
+                                'Hispanic' = 'Hispanic','Asian' = 'Asian')),
+                  plotOutput('hh.race.plot')
+                ),
+        # Tab panel for race proportion barplots
+        tabPanel('Race Proportions',
+                  checkboxInput('prop.include', 'Include White and Black', value=TRUE),
+                  plotOutput('prop.race.plot')
+                )
     )
-    )
+  )
   )
 ))
