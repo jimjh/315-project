@@ -49,7 +49,7 @@ output$race.proportion <- renderPlot({
   title(title.2000)
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
        col=col.vector(prop.race.2010),border=NA)
-  title(title.2000)
+  title(title.2010)
   legend("bottomright",
          legend=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
          text.col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),
