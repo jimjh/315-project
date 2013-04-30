@@ -93,7 +93,7 @@ output$race.lat <- renderPlot({
     title.2000<-paste("Violin Plot of Showing Population Distribution of ",race.name.2000,sep=" ")
     title.2010<-paste("Violin Plot of Showing Population Distribution of ",race.name.2010,sep=" ")
     
-    par(mfrow=c(1,2),mar=c(0, 4, 4, 2) + 0.1)
+    par(mfrow=c(1,2),mar=c(5, 4, 4, 2) + 0.1)
     violin.2000<-wvioplot(x.coords.2000.1,x.coords.2000.2,
                           x.coords.2000.3,x.coords.2000.4,
                           x.coords.2000.5,x.coords.2000.6,
