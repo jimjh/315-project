@@ -131,14 +131,14 @@ output$plot2 <- renderPlot({
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep=" ")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep=" ")
   plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000,race.2000),border="grey74")
+       col=col.vector(race.2000,race.2000),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2000, col=rgb(0,0,0,.5), lwd=2, add=T)
   }
   title(title.2000)
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000,race.2010),border="grey74")
+       col=col.vector(race.2000,race.2010),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2010, col=rgb(0,0,0,.5), lwd=2, add=T)
