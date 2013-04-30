@@ -27,7 +27,7 @@ output$race.proportion <- renderPlot({
   col.vector<-function(variable){
     col.vec<-vector(length=length(variable))
     col.vec[which(variable<(5.0))]<-"yellow"
-    col.vec[which(is.na(variable))]<-"yellow"
+    col.vec[which(is.na(variable))]<-"white"
     col.vec[which(variable<(10.0)& variable>=(5.0))]<-"gold"
     col.vec[which(variable<(20.0)& variable>=(10.0))]<-"darkgoldenrod2"
     col.vec[which(variable<(35.0) & variable>=(20.0))]<-"darkorange"
@@ -45,14 +45,14 @@ output$race.proportion <- renderPlot({
   title.2010<-paste("Map of Louisiana Showing Proportion of ",race.name.2010,sep=" ")
   par(mfrow=c(2,1),mar=c(0, 4, 4, 2) + 0.1)
   plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(prop.race.2000))
+       col=col.vector(prop.race.2000),border="grey74")
   title(title.2000)
   legend("bottomright",
          legend=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
          text.col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),
          col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),lwd=2)
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(prop.race.2010))
+       col=col.vector(prop.race.2010),border="grey74")
   title(title.2000)
   legend("bottomright",
          legend=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),

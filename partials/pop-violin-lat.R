@@ -123,7 +123,7 @@ output$race.lat <- renderPlot({
     y.coords.2010.4<-ycoords.2010[which(race.2010.cat==4)]
     y.coords.2010.5<-ycoords.2010[which(race.2010.cat==5)]
     y.coords.2010.6<-ycoords.2010[which(race.2010.cat==6)]
-    par(mfrow=c(1,2),mar=c(0, 4, 4, 2) + 0.1)
+    par(mfrow=c(1,2),mar=c(5, 4, 4, 2) + 0.1)
     violin.2000<-wvioplot(y.coords.2000.1,y.coords.2000.2,
                           y.coords.2000.3,y.coords.2000.4,
                           y.coords.2000.5,y.coords.2000.6,
@@ -131,6 +131,7 @@ output$race.lat <- renderPlot({
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
     title(title.2000,ylab="Latitude")
+    
     violin.2000<-wvioplot(y.coords.2010.1,y.coords.2010.2,
                           y.coords.2010.3,y.coords.2010.4,
                           y.coords.2010.5,y.coords.2010.6,
@@ -138,6 +139,7 @@ output$race.lat <- renderPlot({
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
     title(title.2010,ylab="Latitude")
+    
   }
  
 })
