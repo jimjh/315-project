@@ -14,21 +14,21 @@ shinyUI(bootstrapPage(
                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
                            selected = "White"),
                checkboxInput('pop_contour', 'Show Population Contour'),
-               plotOutput('plot2')
+               plotOutput('plot2', height="7.5in")
       ),
       tabPanel('Race by Year (Percentage Change)',
                selectInput(inputId = "race.percent",
                            label = "Race:",
                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
                            selected = "White"),
-               plotOutput('race.percent.change')
+               plotOutput('race.percent.change', height="7.5in")
       ),
       tabPanel('Race by Year (Proportion)',
                selectInput(inputId = "race.prop",
                            label = "Race:",
                            choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
                            selected = "White"),
-               plotOutput('race.proportion')
+               plotOutput('race.proportion', height="7.5in")
       ),
       tabPanel('Race by Year (Latitude, Longitude)',
                selectInput(inputId = "race.lat",
@@ -41,7 +41,7 @@ shinyUI(bootstrapPage(
                h4('Bandwidth'),
                sliderInput("violin.adjust", label="Adjust",
                            min=1, max=10, value=3, step=0.25),
-               plotOutput('race.lat')
+               plotOutput('race.lat', height="7.5in")
       ),
       tabPanel('Age vs Race',
                selectInput('age.gender', 'Gender: ',
