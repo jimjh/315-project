@@ -2,9 +2,9 @@
 library(shiny)
 
 shinyUI(bootstrapPage(
-  
+
   headerPanel("US Census 2010"),
-  
+
   mainPanel(div(class='span12',
     # multiple tabs
     tabsetPanel(
@@ -58,17 +58,17 @@ shinyUI(bootstrapPage(
                plotOutput('age.race', height="7.5in")
       ),
       tabPanel('Income vs Race',
+               h2('Bandwidth'),
+               sliderInput("income.adjust.x", label="Income",
+                           min=1000, max=30000, value=12000, step=1000),
+               sliderInput("income.adjust.y", label="Pop. Percentage",
+                           min=0.05, max=2, value=0.25, step=0.05),
                selectInput('income.gender', 'Gender: ',
                            list('Male' = 'male', 'Female' = 'female')),
                selectInput('income.race', 'Race: ',
                            list('White' = 'white', 'Black' = 'black',
                                 'American Indian/Native' = 'american.indian',
                                 'Asian' = 'asian')),
-               h2('Bandwidth'),
-               sliderInput("income.adjust.x", label="Income",
-                           min=1000, max=30000, value=12000, step=1000),
-               sliderInput("income.adjust.y", label="Pop. Percentage",
-                           min=0.05, max=2, value=0.25, step=0.05),
                plotOutput('income.race', height="7.5in")
       ),
       # Tab Panel Containing Age vs. Population Graphs
