@@ -50,13 +50,7 @@ output$race.lat <- renderPlot({
     xcoords.2010[i] <- mean(louisiana.2010@polygons[[i]]@Polygons[[1]]@coords[,1])
     ycoords.2010[i] <- mean(louisiana.2010@polygons[[i]]@Polygons[[1]]@coords[,2])
   }
-  
-  
-  race.name<-paste(input$race.lat,"s",sep="")
-  race.name.2000<-paste(race.name,"in 2000 (Latitude)",sep=" ")
-  race.name.2010<-paste(race.name,"in 2010 (Latitude)",sep=" ")
-  title.2000<-paste("Violin Plot of Showing Population Distribution of ",race.name.2000,sep=" ")
-  title.2010<-paste("Violin Plot of Showing Population Distribution of ",race.name.2010,sep=" ")
+
   
   # 2000
   race.2000.cat<-vector(length=length(race.2000))
@@ -92,6 +86,13 @@ output$race.lat <- renderPlot({
     x.coords.2010.4<-xcoords.2010[which(race.2010.cat==4)]
     x.coords.2010.5<-xcoords.2010[which(race.2010.cat==5)]
     x.coords.2010.6<-xcoords.2010[which(race.2010.cat==6)]
+    
+    race.name<-paste(input$race.lat,"s",sep="")
+    race.name.2000<-paste(race.name,"in 2000 (Longitude)",sep=" ")
+    race.name.2010<-paste(race.name,"in 2010 (Longitude)",sep=" ")
+    title.2000<-paste("Violin Plot of Showing Population Distribution of ",race.name.2000,sep=" ")
+    title.2010<-paste("Violin Plot of Showing Population Distribution of ",race.name.2010,sep=" ")
+    
     par(mfrow=c(1,2),mar=c(0, 4, 4, 2) + 0.1)
     violin.2000<-wvioplot(x.coords.2000.1,x.coords.2000.2,
                           x.coords.2000.3,x.coords.2000.4,
@@ -123,6 +124,13 @@ output$race.lat <- renderPlot({
     y.coords.2010.4<-ycoords.2010[which(race.2010.cat==4)]
     y.coords.2010.5<-ycoords.2010[which(race.2010.cat==5)]
     y.coords.2010.6<-ycoords.2010[which(race.2010.cat==6)]
+    
+    race.name<-paste(input$race.lat,"s",sep="")
+    race.name.2000<-paste(race.name,"in 2000 (Latitude)",sep=" ")
+    race.name.2010<-paste(race.name,"in 2010 (Latitude)",sep=" ")
+    title.2000<-paste("Violin Plot of Showing Population Distribution of ",race.name.2000,sep=" ")
+    title.2010<-paste("Violin Plot of Showing Population Distribution of ",race.name.2010,sep=" ")
+    
     par(mfrow=c(1,2),mar=c(5, 4, 4, 2) + 0.1)
     violin.2000<-wvioplot(y.coords.2000.1,y.coords.2000.2,
                           y.coords.2000.3,y.coords.2000.4,

@@ -126,7 +126,7 @@ output$plot2 <- renderPlot({
   }
   
   
-  par(mfrow=c(1,2),mar=c(0, 4, 4, 2) + 0.1)
+  par(mfrow=c(1,2),mar=c(5, 4, 4, 2) + 0.1)
   race.name<-paste(input$race.year,"s",sep="")
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep=" ")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep=" ")
