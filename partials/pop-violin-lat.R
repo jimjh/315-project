@@ -3,10 +3,10 @@ output$race.lat <- renderPlot({
   louisiana.2000<-louisiana.blkgrp
   louisiana.2010<-louisiana.blkgrp10
   if (input$race.lat=="White"){
-    race.white.2000<-louisiana.2000$nh.white
-    race.white.2010<-louisiana.2010$P0050003
-    prop.white.2000<-race.white.2000/louisiana.2000$pop2000*100
-    prop.white.2010<-race.white.2010/louisiana.2010$P0010001*100
+    race.2000<-louisiana.2000$nh.white
+    race.2010<-louisiana.2010$P0050003
+    prop.2000<-race.2000/louisiana.2000$pop2000*100
+    prop.2010<-race.2010/louisiana.2010$P0010001*100
   }
   if (input$race.lat=="Black"){
     race.2000<-louisiana.2000$nh.black
