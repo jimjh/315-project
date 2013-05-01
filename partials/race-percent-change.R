@@ -52,6 +52,5 @@ output$race.percent.change <- renderPlot({
   title(title)
   legend("bottomright",
          legend=c("<0%","0%-15%","15%-30%","30%-60%","60%-100%",">100%"),
-         text.col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),
          col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),lwd=2)
 })
