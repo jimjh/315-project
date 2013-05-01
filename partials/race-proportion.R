@@ -52,6 +52,5 @@ output$race.proportion <- renderPlot({
   title(title.2010)
   legend("bottomright",
          legend=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
-         text.col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),
          col=c("yellow","gold","darkgoldenrod2","darkorange","firebrick2","firebrick4"),lwd=2)
 })

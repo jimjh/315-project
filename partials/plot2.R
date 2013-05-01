@@ -9,6 +9,7 @@ output$plot2 <- renderPlot({
     col.vec[which(variable.2010<second & variable.2010>=first)]<-"gold"
     col.vec[which(variable.2010<third & variable.2010>=second)]<-"darkgoldenrod2"
     col.vec[which(variable.2010>=third)]<-"darkorange"
+    col.vec[which(is.na(variable.2010))]<-"white"
     col.vec[which(variable.2010==0)]<-"white"
     return (col.vec)
   }
@@ -43,6 +44,7 @@ output$plot2 <- renderPlot({
     race.2000<-louisiana.2000$hispanic.t[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0040003[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   }
+  
   
   # 2000 Data
   # create x and y coordinate vectors the length of the pop vector
@@ -149,6 +151,5 @@ output$plot2 <- renderPlot({
   title(title.2010)
   legend("bottomright",
          legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         text.col=c("yellow","gold","darkgoldenrod2","darkorange"),
          col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
 })
