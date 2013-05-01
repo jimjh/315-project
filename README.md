@@ -1,3 +1,15 @@
+
+36-315 Statistical Graphics and Visualization Final Project
+
+--Inez Fong
+--Jim Lim
+--Luke Davis
+--Mike Ferraco
+
+Run this application with the command "shiny::runApp('.')"
+
+
+
 315-project
 
 How does the population distribution compare over time, from 2000 to 2010,

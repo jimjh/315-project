@@ -62,7 +62,7 @@ output$age_vs_pop <- renderPlot({
   
   legend("top",
          legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=3)
   
   if (input$age_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
@@ -74,7 +74,7 @@ output$age_vs_pop <- renderPlot({
   
   legend("top",
          legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=3)
   
   if (input$age_contour == TRUE) {
     # plot the contour overlay on the map showing pop density

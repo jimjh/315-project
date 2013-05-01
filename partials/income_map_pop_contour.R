@@ -1,5 +1,5 @@
 incomepop.data <- list('male' = louisiana.blkgrp10$income.male,
-                    'female' = louisiana.blkgrp10$income.female)
+                       'female' = louisiana.blkgrp10$income.female)
 
 output$income_vs_pop <- renderPlot({
   par(mfrow=c(1,2))
@@ -8,7 +8,7 @@ output$income_vs_pop <- renderPlot({
   
   legend("top",
          legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=3)
   
   if (input$income_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
@@ -21,7 +21,7 @@ output$income_vs_pop <- renderPlot({
   
   legend("top",
          legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=3)
   
   if (input$income_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
