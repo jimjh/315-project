@@ -1,16 +1,13 @@
 output$plot2 <- renderPlot({
-  col.vector<-function(variable.2000, variable.2010){
-    summary.vec<-summary(variable.2000)
-    col.vec<-vector(length=length(variable.2010))
-    first<-summary.vec[[1]]
-    second<-summary.vec[[2]]
-    third<-summary.vec[[4]]
-    col.vec[which(variable.2010<first)]<-"yellow"
-    col.vec[which(variable.2010<second & variable.2010>=first)]<-"gold"
-    col.vec[which(variable.2010<third & variable.2010>=second)]<-"darkgoldenrod2"
-    col.vec[which(variable.2010>=third)]<-"darkorange"
-    col.vec[which(is.na(variable.2010))]<-"white"
-    col.vec[which(variable.2010==0)]<-"white"
+  col.vector<-function(variable){
+    col.vec<-vector(length=length(variable))
+    col.vec[which(variable<10)]<-"yellow"
+    col.vec[which(variable<100 & variable>=10)]<-"gold"
+    col.vec[which(variable<700 & variable>=100)]<-"darkgoldenrod2"
+    col.vec[which(variable<1500 & variable>=700)]<-"darkorange"
+    col.vec[which(variable>=1500)]<-"darkorange3"
+    col.vec[which(is.na(variable))]<-"white"
+    col.vec[which(variable==0)]<-"white"
     return (col.vec)
   }
   
@@ -146,14 +143,14 @@ output$plot2 <- renderPlot({
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep=" ")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep=" ")
   plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000.all,race.2000.all),border=NA)
+       col=col.vector(race.2000.all),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2000, col=rgb(0,0,0,.5), lwd=2, add=T)
   }
   title(title.2000)
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000.all,race.2010.all),border=NA)
+       col=col.vector(race.2010.all),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2010, col=rgb(0,0,0,.5), lwd=2, add=T)
