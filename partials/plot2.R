@@ -9,6 +9,7 @@ output$plot2 <- renderPlot({
     col.vec[which(variable.2010<second & variable.2010>=first)]<-"gold"
     col.vec[which(variable.2010<third & variable.2010>=second)]<-"darkgoldenrod2"
     col.vec[which(variable.2010>=third)]<-"darkorange"
+    col.vec[which(variable.2010==0)]<-"white"
     return (col.vec)
   }
   
@@ -19,41 +20,41 @@ output$plot2 <- renderPlot({
   
   LONGITUDE <- c(-90.29, -89.84)
   LATITUDE  <- c(29.81, 30.10)
-  coord.2000s <- coordinates(louisiana.blkgrp)
-  coord.2010s <- coordinates(louisiana.blkgrp10)
+  coords.2000 <- coordinates(louisiana.blkgrp)
+  coords.2010 <- coordinates(louisiana.blkgrp10)
   
   if (input$race.year=="White"){
-    race.2000<-louisiana.2000$nh.white[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
-    race.2010<-louisiana.2010$P0050003[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
+    race.2000<-louisiana.2000$nh.white[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+    race.2010<-louisiana.2010$P0050003[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   } 
   if (input$race.year=="Black"){
-    race.2000<-louisiana.2000$nh.black[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
-    race.2010<-louisiana.2010$P0050004[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
+    race.2000<-louisiana.2000$nh.black[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+    race.2010<-louisiana.2010$P0050004[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   }
   if (input$race.year=="American Indian/Native"){
-    race.2000<-louisiana.2000$nh.ameri.es[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
-    race.2010<-louisiana.2010$P0050005[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
+    race.2000<-louisiana.2000$nh.ameri.es[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+    race.2010<-louisiana.2010$P0050005[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   }
   if (input$race.year=="Asian"){
-    race.2000<-louisiana.2000$nh.asian[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
-    race.2010<-louisiana.2010$P0050006[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
+    race.2000<-louisiana.2000$nh.asian[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+    race.2010<-louisiana.2010$P0050006[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   }
   if (input$race.year=="Hispanic"){
-    race.2000<-louisiana.2000$hispanic.t[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
-    race.2010<-louisiana.2010$P0040003[coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2]]
+    race.2000<-louisiana.2000$hispanic.t[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+    race.2010<-louisiana.2010$P0040003[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   }
   
   # 2000 Data
   # create x and y coordinate vectors the length of the pop vector
   len.2000 <- length(race.2000)
-  xcoord.2000s <- rep(NA, len.2000)
-  ycoord.2000s <- rep(NA, len.2000)
+  xcoords.2000 <- rep(NA, len.2000)
+  ycoords.2000 <- rep(NA, len.2000)
   
   # separate the x and y coord.2000inates
-  xcoord.2000s <- coord.2000s[,1][coord.2000s[,1] > LONGITUDE[1] & coord.2000s[,1] < LONGITUDE[2] & coord.2000s[,2] > LATITUDE[1] & coord.2000s[,2] < LATITUDE[2]]
-  ycoord.2000s <- coord.2000s[,2][coord.2000s[,1] > LONGITUDE[1] & coord.2000s[,1] < LONGITUDE[2] & coord.2000s[,2] > LATITUDE[1] & coord.2000s[,2] < LATITUDE[2]]
+  xcoords.2000 <- coords.2000[,1][coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
+  ycoords.2000 <- coords.2000[,2][coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
   
-  # weight the x and y coord.2000s based on the pop
+  # weight the x and y coords.2000 based on the pop
   num <- 10
   weighted.2000x <- rep(0, 0)
   weighted.2000y <- rep(0, 0)
@@ -62,8 +63,8 @@ output$plot2 <- renderPlot({
     x <- rep(0, race.2000[i]/num)
     y <- rep(0, race.2000[i]/num)
     for (j in 1:(race.2000[i]/num)) {
-      x[j] <- xcoord.2000s[i]
-      y[j] <- ycoord.2000s[i]
+      x[j] <- xcoords.2000[i]
+      y[j] <- ycoords.2000[i]
     }
     weighted.2000x <- c(weighted.2000x, x)
     weighted.2000y <- c(weighted.2000y, y)
@@ -71,28 +72,30 @@ output$plot2 <- renderPlot({
   
   na.weighted.2000x<-which(is.na(weighted.2000x))
   na.weighted.2000y<-which(is.na(weighted.2000y))
-  weighted.2000x.no.na<-weighted.2000x[-na.weighted.2000x]
-  weighted.2000x.no.na<-weighted.2000x[-na.weighted.2000y]
-  
-  weighted.2000y.no.na<-weighted.2000y[-na.weighted.2000x]
-  weighted.2000y.no.na<-weighted.2000y[-na.weighted.2000y]
-  
-  weighted.2000x.no.na.finite<-weighted.2000x.no.na[which(is.finite(weighted.2000x.no.na) & is.finite(weighted.2000y.no.na))]
-  weighted.2000y.no.na.finite<-weighted.2000y.no.na[which(is.finite(weighted.2000y.no.na) & is.finite(weighted.2000y.no.na))]
-  # get the density estimate
-  dens.2000 <- kde2d(weighted.2000x.no.na.finite, weighted.2000y.no.na.finite)
-  
+  if (length(na.weighted.2000x)!=0 & length(na.weighted.2000y)!=0){
+    weighted.2000x.no.na<-weighted.2000x[-na.weighted.2000x]
+    weighted.2000x.no.na<-weighted.2000x[-na.weighted.2000y]
+    
+    weighted.2000y.no.na<-weighted.2000y[-na.weighted.2000x]
+    weighted.2000y.no.na<-weighted.2000y[-na.weighted.2000y]
+    weighted.2000x.no.na.finite<-weighted.2000x.no.na[which(is.finite(weighted.2000x.no.na) & is.finite(weighted.2000y.no.na))]
+    weighted.2000y.no.na.finite<-weighted.2000y.no.na[which(is.finite(weighted.2000y.no.na) & is.finite(weighted.2000y.no.na))]
+    
+    dens.2000 <- kde2d(weighted.2000x.no.na.finite, weighted.2000y.no.na.finite)
+  } else {
+    dens.2000 <- kde2d(weighted.2000x, weighted.2000y)
+  }
   # 2010 Data
   # create x and y coordinate vectors the length of the pop vector
   len.2010 <- length(race.2010)
-  xcoord.2010s <- rep(NA, len.2010)
-  ycoord.2010s <- rep(NA, len.2010)
+  xcoords.2010 <- rep(NA, len.2010)
+  ycoords.2010 <- rep(NA, len.2010)
   
   # separate the x and y coord.2010inates
-  xcoord.2010s <- coord.2010s[,1][coord.2010s[,1] > LONGITUDE[1] & coord.2010s[,1] < LONGITUDE[2] & coord.2010s[,2] > LATITUDE[1] & coord.2010s[,2] < LATITUDE[2]]
-  ycoord.2010s <- coord.2010s[,2][coord.2010s[,1] > LONGITUDE[1] & coord.2010s[,1] < LONGITUDE[2] & coord.2010s[,2] > LATITUDE[1] & coord.2010s[,2] < LATITUDE[2]]
+  xcoords.2010 <- coords.2010[,1][coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+  ycoords.2010 <- coords.2010[,2][coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
   
-  # weight the x and y coord.2010s based on the pop
+  # weight the x and y coords.2010 based on the pop
   num <- 10
   weighted.2010x <- rep(0, 0)
   weighted.2010y <- rep(0, 0)
@@ -101,8 +104,8 @@ output$plot2 <- renderPlot({
     x <- rep(0, race.2010[i]/num)
     y <- rep(0, race.2010[i]/num)
     for (j in 1:(race.2010[i]/num)) {
-      x[j] <- xcoord.2010s[i]
-      y[j] <- ycoord.2010s[i]
+      x[j] <- xcoords.2010[i]
+      y[j] <- ycoords.2010[i]
     }
     weighted.2010x <- c(weighted.2010x, x)
     weighted.2010y <- c(weighted.2010y, y)

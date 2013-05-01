@@ -34,6 +34,7 @@ output$race.percent.change <- renderPlot({
     col.vec[which(variable<(60.0) & variable>=(30.0))]<-"darkorange"
     col.vec[which(variable<(100.0) & variable>=(60.0))]<-"firebrick2"
     col.vec[which(variable>=(100.0))]<-"firebrick4"
+    col.vec[which(variable==(0.0))]<-"white"
     return (col.vec)
   }
   percent.change<-race.2010
