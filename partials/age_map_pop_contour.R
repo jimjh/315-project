@@ -5,14 +5,16 @@ col.vector<-function(variable){
   first<-summary.vec[[1]]
   second<-summary.vec[[2]]
   third<-summary.vec[[4]]
-  col.vec[which(variable<first)]<-"gold"
-  col.vec[which(variable<second & variable>=first)]<-"darkgoldenrod2"
-  col.vec[which(variable<third & variable>=second)]<-"darkorange"
-  col.vec[which(variable>=third)]<-"firebrick2"
+  col.vec[which(variable<first)]<-"yellow"
+  col.vec[which(variable<second & variable>=first)]<-"gold"
+  col.vec[which(variable<third & variable>=second)]<-"darkgoldenrod2"
+  col.vec[which(variable>=third)]<-"darkorange"
   col.vec[which(variable == 0)] <- "white"
   col.vec[which(is.na(variable))] <- "white"
   return (col.vec)
 }
+
+
 
 # get the coordinates for the center of every blkgrp
 
@@ -56,6 +58,11 @@ agepop.data <- list('male' = louisiana.blkgrp10$age.male,
 output$age_vs_pop <- renderPlot({
   par(mfrow=c(1,2))
   plot(louisiana.blkgrp10, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10), col=col.vector(agepop.data[['male']]), border=NA)
+  title("Map of Male Age Distribution vs. Population Density in New Orleans (2010)")
+  
+  legend("top",
+         legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
   
   if (input$age_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
@@ -63,6 +70,11 @@ output$age_vs_pop <- renderPlot({
   }
   
   plot(louisiana.blkgrp10, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10), col=col.vector(agepop.data[['female']]), border=NA)
+  title("Map of Female Age Distribution vs. Population Density in New Orleans (2010)")
+  
+  legend("top",
+         legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
+         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
   
   if (input$age_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
