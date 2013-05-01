@@ -20,7 +20,7 @@ output$income_vs_pop <- renderPlot({
   title("Map of Female Income Distribution vs. Population Density in New Orleans (2010)")
   
   legend("top",
-         leend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
+         legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
          col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
   
   if (input$income_contour == TRUE) {
