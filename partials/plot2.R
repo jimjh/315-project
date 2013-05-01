@@ -157,6 +157,6 @@ output$plot2 <- renderPlot({
   }
   title(title.2010)
   legend("bottomright",
-         legend=c("First Quartile","Second Quartile","Third Quartile","Fourth Quartile"),
-         col=c("yellow","gold","darkgoldenrod2","darkorange"),lwd=2)
+         legend=c("< 10","10-100","100-700","700-1500", "> 1500"),
+         col=c("yellow","gold","darkgoldenrod2","darkorange","darkorange3"),lwd=2)
 })
