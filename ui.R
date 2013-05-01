@@ -37,7 +37,7 @@ shinyUI(bootstrapPage(
                            selected = "White"),
                radioButtons("lat.lon", "Latitude/Longitude:",
                             c("Latitude" = "lat",
-                              "Longitude" = "long")),
+                              "Longitude" = "lon")),
                h4('Bandwidth'),
                sliderInput("violin.adjust", label="Adjust",
                            min=1, max=10, value=3, step=0.25),
