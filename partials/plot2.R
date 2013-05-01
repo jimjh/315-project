@@ -27,22 +27,32 @@ output$plot2 <- renderPlot({
   if (input$race.year=="White"){
     race.2000<-louisiana.2000$nh.white[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0050003[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+    race.2000.all<-louisiana.2000$nh.white
+    race.2010.all<-louisiana.2010$P0050003
   } 
   if (input$race.year=="Black"){
     race.2000<-louisiana.2000$nh.black[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0050004[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+    race.2000.all<-louisiana.2000$nh.black
+    race.2010.all<-louisiana.2010$P0050004
   }
   if (input$race.year=="American Indian/Native"){
     race.2000<-louisiana.2000$nh.ameri.es[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0050005[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+    race.2000.all<-louisiana.2000$nh.ameri.es
+    race.2010.all<-louisiana.2010$P0050005
   }
   if (input$race.year=="Asian"){
     race.2000<-louisiana.2000$nh.asian[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0050006[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+    race.2000.all<-louisiana.2000$nh.asian
+    race.2010.all<-louisiana.2010$P0050006
   }
   if (input$race.year=="Hispanic"){
     race.2000<-louisiana.2000$hispanic.t[coords.2000[,1] > LONGITUDE[1] & coords.2000[,1] < LONGITUDE[2] & coords.2000[,2] > LATITUDE[1] & coords.2000[,2] < LATITUDE[2]]
     race.2010<-louisiana.2010$P0040003[coords.2010[,1] > LONGITUDE[1] & coords.2010[,1] < LONGITUDE[2] & coords.2010[,2] > LATITUDE[1] & coords.2010[,2] < LATITUDE[2]]
+    race.2000.all<-louisiana.2000$hispanic.t
+    race.2010.all<-louisiana.2010$P0040003
   }
   
   
@@ -136,14 +146,14 @@ output$plot2 <- renderPlot({
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep=" ")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep=" ")
   plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000,race.2000),border=NA)
+       col=col.vector(race.2000.all,race.2000.all),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2000, col=rgb(0,0,0,.5), lwd=2, add=T)
   }
   title(title.2000)
   plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000,race.2010),border=NA)
+       col=col.vector(race.2000.all,race.2010.all),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
     contour(dens.2010, col=rgb(0,0,0,.5), lwd=2, add=T)
