@@ -138,7 +138,7 @@ output$race.lat <- renderPlot({
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2000,ylab="Latitude")
+    title(title.2000,ylab="Latitude",xlab='Proportion of Race')
     
     violin.2000<-wvioplot(y.coords.2010.1,y.coords.2010.2,
                           y.coords.2010.3,y.coords.2010.4,
@@ -146,7 +146,7 @@ output$race.lat <- renderPlot({
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2010,ylab="Latitude")
+    title(title.2010,ylab="Latitude", xlab='Proportion of Race')
     
   }
  

@@ -1,21 +1,24 @@
+capwords <- function(s, strict = FALSE) {
+  cap <- function(s) paste(toupper(substring(s,1,1)), {s <- substring(s,2); if(strict) tolower(s) else s},
+                           sep = "", collapse = " " )
+  sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
+}
+
+coords <- coordinates(louisiana.blkgrp10)
+new.orleans.indices <- which(coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2])
+new.orleans <- louisiana.blkgrp10[new.orleans.indices,]
+
+# poor man's map
+income.data <- list('male' = new.orleans$income.male,
+                    'female' = new.orleans$income.female)
+race.data <- list(
+  'white' = new.orleans$P0030002,
+  'black' = new.orleans$P0030003,
+  'american.indian' = new.orleans$P0030004,
+  'asian' = new.orleans$P0030005
+)
+
 output$income.race <- renderPlot({
-
-  capwords <- function(s, strict = FALSE) {
-    cap <- function(s) paste(toupper(substring(s,1,1)),
-                             {s <- substring(s,2); if(strict) tolower(s) else s},
-                             sep = "", collapse = " " )
-    sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
-  }
-
-  # poor man's map
-  income.data <- list('male' = louisiana.blkgrp10$income.male,
-                      'female' = louisiana.blkgrp10$income.female)
-  race.data <- list(
-    'white' = louisiana.blkgrp10$P0030002,
-    'black' = louisiana.blkgrp10$P0030003,
-    'american.indian' = louisiana.blkgrp10$P0030004,
-    'asian' = louisiana.blkgrp10$P0030005
-  )
 
   # income
   income <- income.data[[input$income.gender]]
@@ -24,9 +27,9 @@ output$income.race <- renderPlot({
 
   # race percentage
   race <- race.data[[input$income.race]]
-  pct.race <- race/louisiana.blkgrp10$P0030001
+  pct.race <- race/new.orleans$P0030001
   # data imputation
-  pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(louisiana.blkgrp10$P0030001, na.rm=T)
+  pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(new.orleans$P0030001, na.rm=T)
   income.density <- kde2d(x=income, y=pct.race, h=c(input$income.adjust.x, input$income.adjust.y),
                           n=50)
 
@@ -41,6 +44,7 @@ output$income.race <- renderPlot({
   points(x=income, y=pct.race, pch=4, col=rgb(.2, .2 , .2, .3))
   contour(income.density, add=T)
   par(prev.par)
+  abline(v=mean(income), lty=2)
 
   # legend
   par(xpd=T)

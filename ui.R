@@ -52,7 +52,7 @@ shinyUI(bootstrapPage(
                                 'Asian' = 'asian')),
                h2('Bandwidth'),
                sliderInput("age.adjust.x", label="Age",
-                           min=2, max=10, value=7.5, step=0.5),
+                           min=5, max=15, value=9.5, step=0.5),
                sliderInput("age.adjust.y", label="Pop. Percentage",
                            min=0.05, max=2, value=0.25, step=0.05),
                plotOutput('age.race', height="7.5in")
@@ -60,7 +60,7 @@ shinyUI(bootstrapPage(
       tabPanel('Income vs Race',
                h2('Bandwidth'),
                sliderInput("income.adjust.x", label="Income",
-                           min=1000, max=30000, value=12000, step=1000),
+                           min=1000, max=30000, value=15000, step=1000),
                sliderInput("income.adjust.y", label="Pop. Percentage",
                            min=0.05, max=2, value=0.25, step=0.05),
                selectInput('income.gender', 'Gender: ',

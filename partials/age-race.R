@@ -1,20 +1,23 @@
+capwords <- function(s, strict = FALSE) {
+  cap <- function(s) paste(toupper(substring(s,1,1)), {s <- substring(s,2); if(strict) tolower(s) else s},
+                           sep = "", collapse = " " )
+  sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
+}
+
+coords <- coordinates(louisiana.blkgrp10)
+new.orleans.indices <- which(coords[,1] > LONGITUDE[1] & coords[,1] < LONGITUDE[2] & coords[,2] > LATITUDE[1] & coords[,2] < LATITUDE[2])
+new.orleans <- louisiana.blkgrp10[new.orleans.indices,]
+
+# poor man's map
+age.data <- list('male' = new.orleans$age.male, 'female' = new.orleans$age.female)
+race.data <- list(
+  'white' = new.orleans$P0030002,
+  'black' = new.orleans$P0030003,
+  'american.indian' = new.orleans$P0030004,
+  'asian' = new.orleans$P0030005
+)
+
 output$age.race <- renderPlot({
-
-  capwords <- function(s, strict = FALSE) {
-    cap <- function(s) paste(toupper(substring(s,1,1)),
-                             {s <- substring(s,2); if(strict) tolower(s) else s},
-                             sep = "", collapse = " " )
-    sapply(strsplit(s, split = " "), cap, USE.NAMES = !is.null(names(s)))
-  }
-
-  # poor man's map
-  age.data <- list('male' = louisiana.blkgrp10$age.male, 'female' = louisiana.blkgrp10$age.female)
-  race.data <- list(
-    'white' = louisiana.blkgrp10$P0030002,
-    'black' = louisiana.blkgrp10$P0030003,
-    'american.indian' = louisiana.blkgrp10$P0030004,
-    'asian' = louisiana.blkgrp10$P0030005
-    )
 
   # age
   age <- age.data[[input$age.gender]]
@@ -23,9 +26,9 @@ output$age.race <- renderPlot({
 
   # race percentage
   race <- race.data[[input$age.race]]
-  pct.race <- race/louisiana.blkgrp10$P0030001
+  pct.race <- race/new.orleans$P0030001
   # data imputation
-  pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(louisiana.blkgrp10$P0030001, na.rm=T)
+  pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(new.orleans$P0030001, na.rm=T)
   age.density <- kde2d(x=age, y=pct.race, h=c(input$age.adjust.x, input$age.adjust.y), n=50)
 
   prev.par <- par(mar=(c(5, 4, 4, 6) + 0.1), xpd=T)
@@ -37,6 +40,7 @@ output$age.race <- renderPlot({
   points(x=age, y=pct.race, pch=4, col=rgb(.2, .2 , .2, .3))
   contour(age.density, add=T)
   par(prev.par)
+  abline(v=mean(age), lty=2)
 
   # legend
   dx <- floor(0.05 * diff(range(age)))
