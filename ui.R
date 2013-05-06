@@ -77,7 +77,9 @@ shinyUI(bootstrapPage(
                         br(),
                         checkboxInput('age_contour', 'Show Population Contour'),
                         br(),
-                        plotOutput('age_vs_pop', height="7.5in")
+                        plotOutput('age_vs_pop', height="7.5in"),
+                        br(),
+                        plotOutput('zoomed_in_age')
                         )
       ),
       # Tab Panel Containing Income vs. Population Graphs
@@ -86,7 +88,9 @@ shinyUI(bootstrapPage(
                         br(),
                         checkboxInput('income_contour', 'Show Population Contour'),
                         br(),
-                        plotOutput('income_vs_pop', height="7.5in")
+                        plotOutput('income_vs_pop', height="7.5in"),
+                        br(),
+                        plotOutput('zoomed_in_income')
                )
       ),
         # Tab panel for barplots of household size by race
