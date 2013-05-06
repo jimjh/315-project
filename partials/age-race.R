@@ -29,7 +29,8 @@ output$age.race <- renderPlot({
   pct.race <- race/new.orleans$P0030001
   # data imputation
   pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(new.orleans$P0030001, na.rm=T)
-  age.density <- kde2d(x=age, y=pct.race, h=c(input$age.adjust.x, input$age.adjust.y), n=50)
+  age.density <- kde2d(x=age, y=pct.race, h=c(input$age.adjust.x, input$age.adjust.y),
+                       n=input$age.adjust.n)
 
   prev.par <- par(mar=(c(5, 4, 4, 6) + 0.1), xpd=T)
   image(age.density, col=rev(heat.colors(12)),
