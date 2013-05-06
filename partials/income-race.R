@@ -31,7 +31,7 @@ output$income.race <- renderPlot({
   # data imputation
   pct.race[is.na(pct.race)] <- sum(race, na.rm=T)/sum(new.orleans$P0030001, na.rm=T)
   income.density <- kde2d(x=income, y=pct.race, h=c(input$income.adjust.x, input$income.adjust.y),
-                          n=50)
+                          n=input$income.adjust.n)
 
   prev.par <- par(mar=(c(5, 4, 4, 7.3) + 0.1), xpd=T)
   max.income <- 150000
