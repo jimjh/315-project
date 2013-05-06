@@ -100,12 +100,3 @@ output$zoomed_in_age <- renderPlot({
   plot(louisiana.blkgrp10, xlim=c(-90.13884, -90.06836), ylim=c(29.98311, 29.92592), col=col.vector(agepop.data[['female']]), border=NA)
   title("Zoomed: Female Age Distribution in City Center")
 })
-
-
-plot(louisiana.blkgrp10, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10), col=col.vector(agepop.data[['female']]), border=NA)
-
-# zoomed in
-# -90.13884, -90.06836
-# 29.98311, 29.92592
-#plot(louisiana.blkgrp10, xlim=c(-90.13884, -90.06836), ylim=c(29.98311, 29.92592), col=col.vector(agepop.data[['female']]), border=NA)
-#rect(-90.13884, 29.98311, -90.06836, 29.92592, border=2, lwd=2)
