@@ -18,7 +18,6 @@ LATITUDE  <- c(29.81, 30.10)
 
 shinyServer(function(input, output) {
   source('partials/plot2.R', local=T)
-  source('partials/race-percent-change.R', local=T)
   source('partials/race-proportion.R', local=T)
   source('partials/pop-violin-lat.R', local=T)
   source('partials/age-race.R', local=T)

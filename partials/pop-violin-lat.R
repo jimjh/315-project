@@ -50,7 +50,7 @@ output$race.lat <- renderPlot({
     xcoords.2010[i] <- mean(louisiana.2010@polygons[[i]]@Polygons[[1]]@coords[,1])
     ycoords.2010[i] <- mean(louisiana.2010@polygons[[i]]@Polygons[[1]]@coords[,2])
   }
-
+  
   
   # 2000
   race.2000.cat<-vector(length=length(race.2000))
@@ -60,7 +60,7 @@ output$race.lat <- renderPlot({
   race.2000.cat[which(race.2000<(35.0)& race.2000>=(20.0))]<-4
   race.2000.cat[which(race.2000<(50.0)& race.2000>=(35.0))]<-5
   race.2000.cat[which(race.2000>=(50.0))]<-6
-
+  
   # 2010
   race.2010.cat<-vector(length=length(race.2010))
   race.2010.cat[which(race.2010<(5.0))]<-1
@@ -100,14 +100,14 @@ output$race.lat <- renderPlot({
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2000,ylab="Longitude")
+    title(title.2000,ylab="Longitude",xlab="Population Proportion",ylim=c(-98,-86))
     violin.2000<-wvioplot(x.coords.2010.1,x.coords.2010.2,
                           x.coords.2010.3,x.coords.2010.4,
                           x.coords.2010.5,x.coords.2010.6,
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2010,ylab="Longitude")
+    title(title.2010,ylab="Longitude",xlab="Population Proportion",ylim=c(-98,-86))
   }
   if (input$lat.lon=="lat") {
     # ycoords 2000
@@ -138,7 +138,7 @@ output$race.lat <- renderPlot({
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2000,ylab="Latitude",xlab='Proportion of Race')
+    title(title.2000,ylab="Latitude",xlab="Population Proportion",ylim=c(26,36))
     
     violin.2000<-wvioplot(y.coords.2010.1,y.coords.2010.2,
                           y.coords.2010.3,y.coords.2010.4,
@@ -146,8 +146,8 @@ output$race.lat <- renderPlot({
                           col="dodgerblue",
                           names=c("<5%","5%-10%","10%-20%","20%-35%","35%-50%",">50%"),
                           clip=F,adjust=input$violin.adjust)
-    title(title.2010,ylab="Latitude", xlab='Proportion of Race')
+    title(title.2010,ylab="Latitude", ,xlab="Population Proportion",ylim=c(26,36))
     
   }
- 
+  
 })

@@ -16,13 +16,6 @@ shinyUI(bootstrapPage(
                checkboxInput('pop_contour', 'Show Population Contour'),
                plotOutput('plot2', height="7.5in")
       ),
-      tabPanel('Race by Year (Percentage Change)',
-               selectInput(inputId = "race.percent",
-                           label = "Race:",
-                           choices = c("White","Black","American Indian/Native","Asian","Hispanic"),
-                           selected = "White"),
-               plotOutput('race.percent.change', height="7.5in")
-      ),
       tabPanel('Race by Year (Proportion)',
                selectInput(inputId = "race.prop",
                            label = "Race:",

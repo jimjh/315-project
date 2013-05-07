@@ -142,18 +142,25 @@ output$plot2 <- renderPlot({
   race.name<-paste(input$race.year,"s",sep="")
   title.2000<-paste("Map of Louisiana 2000 with Showing Population Distribution of",race.name,sep=" ")
   title.2010<-paste("Map of Louisiana 2010 with Showing Population Distribution of",race.name,sep=" ")
-  plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2000.all),border=NA)
+  
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
+    plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+         col=col.vector(race.2000.all),border=NA)
     contour(dens.2000, col=rgb(0,0,0,.5), lwd=2, add=T)
+  } else {
+    plot(louisiana.2000, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+         col=col.vector(race.2000.all),border="gray74")
   }
   title(title.2000)
-  plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
-       col=col.vector(race.2010.all),border=NA)
   if (input$pop_contour == TRUE) {
     # plot the contour overlay on the map showing pop density
+    plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+         col=col.vector(race.2010.all),border=NA)
     contour(dens.2010, col=rgb(0,0,0,.5), lwd=2, add=T)
+  } else {
+    plot(louisiana.2010, xlim=c(-90.29, -89.84), ylim=c(29.81, 30.10),
+         col=col.vector(race.2010.all),border="gray74")
   }
   title(title.2010)
   legend("bottomright",
